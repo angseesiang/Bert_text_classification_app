@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Classification</h1>
+        <textarea id="textInput" placeholder="Enter text here..."></textarea>
+        <button onclick="classifyText()">Classify</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function classifyText() {
+            const text = document.getElementById('textInput').value;
+            fetch('/classify', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('result').innerText = 'Classification: ' + data.classification;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+    </script>
+</body>
+</html>
+
+
+
+
+

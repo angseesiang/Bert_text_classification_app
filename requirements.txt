@@ -1,0 +1,9 @@
+flask
+flask-cors
+tensorflow
+transformers
+scikit-learn
+requests
+tf-keras
+safetensors
+huggingface_hub
